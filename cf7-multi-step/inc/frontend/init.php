@@ -11,7 +11,9 @@ add_filter(
 	}
 );
 
-add_action('wpcf7_enqueue_scripts', 'cf7mls_frontend_scripts_callback');
+add_action( 'wpcf7_enqueue_scripts', 'cf7mls_frontend_scripts_callback' );
+
+add_action( 'wpcf7_enqueue_styles', 'cf7mls_css_to_wp_head' );
 
 function cf7mls_frontend_scripts_callback() {
 	$cf7d_messages_error = '';
@@ -74,12 +76,6 @@ function cf7mls_add_shortcode_step() {
 }
 add_action( 'wpcf7_init', 'cf7mls_add_shortcode_step' );
 function cf7mls_multistep_shortcode_callback( $tag ) {
-	// add css
-	ob_start();
-	cf7mls_css_to_wp_head();
-	$html = ob_get_contents();
-	ob_end_clean(); 
-
 	$tag        = new WPCF7_FormTag( $tag );
 	$name       = $tag->name;
 	$numberStep = (int) explode( '-', $name )[1];
@@ -99,7 +95,7 @@ function cf7mls_multistep_shortcode_callback( $tag ) {
 		$next = $tag->values[1];
 	}
 
-	$html = '<div class="cf7mls-btns">';
+	$html = '<div class="cf7mls-btns ' . ( true === $checkBackLast ? 'cf7mls-btns-last-step' : '' ) . '">';
 	// TODO add form id to btn to prevent duplicate
 	if ( true === $checkBackLast && $back ) {
 		$html .= apply_filters( 'cf7_step_before_back_btn', '', $name );

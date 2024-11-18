@@ -4,7 +4,7 @@ Donate link: https://codecanyon.net/item/contact-form-7-multistep/15232990
 Tags: cf7, multi-step, forms, multi-step form, multistep, contact form 7, form, form builder, 
 Requires at least: 3.0
 Tested up to: 6.6.1
-Stable tag: 2.7.8
+Stable tag: 2.7.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,9 @@ Considering upgrading your contact form to Pro? Check it out: [Contact Form 7 Mu
 5. Progress Bar Options (PRO)
 
 == Changelog ==
+
+= Nov 18, 2024 - Version 2.7.9 =
+- Updated: Compatible with CF7 6.0
 
 = Sep 9, 2024 - Version 2.7.8 =
 - Fixed: Bug report by Patchstack

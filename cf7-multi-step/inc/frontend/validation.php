@@ -307,7 +307,6 @@ if ( ! class_exists( 'NjtCF7MLSValidation' ) ) {
 									if ( is_array( $v ) ) {
 										$v = implode( ' ', $v );
 									}
-									// $check_existing = $wpdb->get_results( 'SELECT `id` FROM ' . $wpdb->prefix . 'cf7_data_entry WHERE `cf7_id` = ' . (int) $id . ' AND `data_id` = ' . (int) $_cf7mls_db_form_data_id . " AND `name` = '" . wp_kses_post( $k ) . "'" );
 									$check_existing = $wpdb->get_results( $wpdb->prepare( "SELECT `id` FROM ' . $wpdb->prefix . 'cf7_data_entry WHERE `cf7_id` = %d AND `data_id` = %d AND `name` = %s", (int) $id, (int) $_cf7mls_db_form_data_id, $k ) );
 									if ( count( $check_existing ) > 0 ) {
 										/* Update */

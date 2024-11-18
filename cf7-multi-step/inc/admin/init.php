@@ -35,6 +35,7 @@ function cf7mls_wpcf7_editor_panels( $panels ) {
 	);
 	return $panels;
 }
+
 function cf7mls_wpcf7_editor_panel_form( $post ) {
 	$desc_link   = wpcf7_link(
 		__( 'https://contactform7.com/editing-form-template/', 'contact-form-7' ),
@@ -66,12 +67,12 @@ function cf7mls_admin_scripts_callback( $hook_suffix ) {
 	if ( ( substr( $hook_suffix, -15 ) == '_page_wpcf7-new' ) || ( $hook_suffix == 'toplevel_page_wpcf7' ) ) {
 		$load_js_css = true;
 	}
-	if ( $load_js_css === true ) {
+	if ( true === $load_js_css ) {
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker' );
 
-		wp_enqueue_style( 'vue-css', CF7MLS_PLUGIN_URL . 'assets/dist/css/main.css' );
-		wp_register_script( 'vue-js', CF7MLS_PLUGIN_URL . 'assets/dist/js/main.js' );
+		wp_enqueue_style( 'vue-css', CF7MLS_PLUGIN_URL . 'assets/dist/css/main.css', array(), CF7MLS_NTA_VERSION );
+		wp_register_script( 'vue-js', CF7MLS_PLUGIN_URL . 'assets/dist/js/main.js', array( 'jquery' ), CF7MLS_NTA_VERSION, true );
 		wp_enqueue_script( 'vue-js' );
 		wp_localize_script(
 			'vue-js',
@@ -83,10 +84,11 @@ function cf7mls_admin_scripts_callback( $hook_suffix ) {
 				'textEditMoana'           => __( 'Edit With Moana', 'cf7-multi-step' ),
 				'cf7cmlsIsMoanaActivated' => cf7cmlsIsMoanaActivated(),
 				'pluginUrl'               => CF7MLS_PLUGIN_URL,
+				'isCF7Version6'           => version_compare( WPCF7_VERSION, '6.0', '>=' ),
 			)
 		);
 
-		wp_register_script( 'cf7mls', CF7MLS_PLUGIN_URL . 'assets/admin/js/cf7mls.js', array( 'jquery' ) );
+		wp_register_script( 'cf7mls', CF7MLS_PLUGIN_URL . 'assets/admin/js/cf7mls.js', array( 'jquery' ), CF7MLS_NTA_VERSION, true );
 		wp_enqueue_script( 'cf7mls' );
 
 		$form_content = '';
@@ -101,15 +103,15 @@ function cf7mls_admin_scripts_callback( $hook_suffix ) {
 		} else {
 			$form_content = WPCF7_ContactFormTemplate::get_default( 'form' );
 		}
-		$scan = $manager->scan( $form_content );
+			$scan = $manager->scan( $form_content );
 
-		$steps = array();
+			$steps = array();
 
-		$numberStep = 0;
+			$numberStep = 0;
 		foreach ( $scan as $k => $v ) {
-			if ( $v->type == 'cf7mls_step' ) {
+			if ( 'cf7mls_step' == $v->type ) {
 				if ( count( $v->values ) == 2 ) {
-							$numberStep = (int) ( explode( '-', $v->name )[1] );
+						$numberStep = (int) ( explode( '-', $v->name )[1] );
 
 					if ( $numberStep === 1 ) {
 						$steps[] = array(
@@ -125,22 +127,22 @@ function cf7mls_admin_scripts_callback( $hook_suffix ) {
 						);
 					}
 				} elseif ( count( $v->values ) == 3 ) {
-								  $steps[] = array(
-									  'back'  => $v->values[0],
-									  'next'  => $v->values[1],
-									  'title' => $v->values[2],
-								  );
+							  $steps[] = array(
+								  'back'  => $v->values[0],
+								  'next'  => $v->values[1],
+								  'title' => $v->values[2],
+							  );
 				}
 			}
 		}
-		wp_localize_script(
-			'cf7mls',
-			'cf7mls',
-			array(
-				'steps'      => $steps,
-				'cf7mls_app' => null,
-			)
-		);
+			wp_localize_script(
+				'cf7mls',
+				'cf7mls',
+				array(
+					'steps'      => $steps,
+					'cf7mls_app' => null,
+				)
+			);
 
 		wp_register_style( 'cf7mls', CF7MLS_PLUGIN_URL . 'assets/admin/css/cf7mls.css' );
 		wp_enqueue_style( 'cf7mls' );
@@ -148,65 +150,4 @@ function cf7mls_admin_scripts_callback( $hook_suffix ) {
 		wp_register_style( 'cf7mls_progress_bar', CF7MLS_PLUGIN_URL . 'assets/frontend/css/progress_bar.css' );
 		wp_enqueue_style( 'cf7mls_progress_bar' );
 	}
-}
-
-/**
- * Add step buttin to the wpcf7 tag generator.
- */
-function cf7mls_add_tag_generator_multistep() {
-	if ( class_exists( 'WPCF7_TagGenerator' ) ) {
-		$tag = WPCF7_TagGenerator::get_instance();
-		$tag->add(
-			'cf7mls_step',
-			__( 'Step', 'cf7-multi-step' ),
-			'cf7mls_multistep_tag_generator_callback'
-		);
-	}
-}
-add_action( 'admin_init', 'cf7mls_add_tag_generator_multistep', 30 );
-/**
- * [cf7mls_multistep_tag_generator_callback description]
- */
-function cf7mls_multistep_tag_generator_callback( $contact_form, $args = '' ) {
-	 $args = wp_parse_args( $args, array() );
-	?>
-<div class="control-box">
-	<fieldset>
-		<legend><?php _e( 'Generate buttons for form\'s steps.', 'cf7-multi-step' ); ?></legend>
-		<table class="form-table cf7mls-table">
-			<tbody>
-				<tr>
-					<th scope="row"><label for="tag-generator-panel-cf7mls_step-name"><?php _e( 'Name', 'cf7-multi-step' ); ?></label></th>
-					<td><input type="text" id="tag-generator-panel-cf7mls_step-name" class="tg-name oneline" name="name"></td>
-				</tr>
-				<tr>
-					<th scope="row">                        
-						<label for="tag-generator-panel-cf7mls_step-btns-title"><?php _e( 'Back, Next Buttons Title', 'cf7-multi-step' ); ?></label>
-					</th>
-					<td>
-						<textarea name="values" id="tag-generator-panel-cf7mls_step-btns-title" class="cf7mls-values"><?php echo "Back\nNext"; ?></textarea>
-						<br />
-						<label for="tag-generator-panel-cf7mls_step-back">
-							<span class="description"><?php _e( 'One title per line. Back Button\'s title on the first line and Next Button\'s title on the second line.<br />If this is a first step, type only one line for Next Button', 'cf7-multi-step' ); ?></span>
-						</label>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</fieldset>
-</div>
-<div class="insert-box">
-	
-	<input type="text" name="cf7mls_step" class="tag code" readonly="readonly" onfocus="this.select()" />
-
-	<div class="submitbox">
-		<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'cf7-multi-step' ) ); ?>" />
-	</div>
-
-	<br class="clear" />
-
-	<p class="description mail-tag"><label><?php echo esc_html( __( 'This field should not be used on the Mail tab.', 'cf7-multi-step' ) ); ?></label>
-	</p>
-</div>
-	<?php
 }

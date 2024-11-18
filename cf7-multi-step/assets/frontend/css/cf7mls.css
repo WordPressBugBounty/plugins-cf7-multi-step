@@ -14,6 +14,15 @@
 .wpcf7 form.sent .wpcf7-response-output {
   display: block;
 }
+
+.cf7mls-btns.cf7mls-btns-last-step {
+  display: inline;
+}
+
+.cf7mls-btns.cf7mls-btns-last-step .cf7mls_back.action-button {
+  margin: 16px 0px 26px;
+}
+
 .cf7mls-btns .cf7mls_next.action-button,
 .cf7mls-btns .cf7mls_back.action-button {
   margin: 25px 0px 26px;
