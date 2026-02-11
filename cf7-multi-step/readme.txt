@@ -3,7 +3,7 @@ Contributors: ninjateam
 Donate link: https://codecanyon.net/item/contact-form-7-multistep/15232990
 Tags: cf7, multi-step, forms, multi-step form, multistep, contact form 7, form, form builder, 
 Requires at least: 3.0
-Tested up to: 6.6.1
+Tested up to: 6.8
 Stable tag: 2.7.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
