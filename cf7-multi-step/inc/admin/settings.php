@@ -53,7 +53,7 @@ function cf7mls_settings_func( $post ) {    ?>
 				<div class="cf7mls-auto-scroll-wrap">
 					<div class="cf7mls-auto-scroll-title-wrap">
 						<h2 class="cf7mls-auto-scroll-title"><?php echo esc_html( __( 'Auto Scroll to Top', 'cf7-multi-step' ) ); ?></h2>
-						<a tooltip="It will be scrolled to the top of the form after each step." class="cf7mls-tooltip">
+						<a data-tooltip="It will be scrolled to the top of the form after each step." class="cf7mls-tooltip">
 								<img src=<?php echo ( '"' . CF7MLS_PLUGIN_URL . 'assets/admin/img/help-circle.svg' . '"' ); ?> alt="help circle">
 						</a>
 					</div>
@@ -68,7 +68,7 @@ function cf7mls_settings_func( $post ) {    ?>
 				<div class="cf7mls-auto-scroll-wrap">
 					<div class="cf7mls-auto-scroll-title-wrap">
 						<h2 class="cf7mls-auto-scroll-title"><?php echo esc_html( __( 'Return First Step After Submit', 'cf7-multi-step' ) ); ?></h2>
-						<a tooltip="It will be clear form and return to first step after submit form success" class="cf7mls-tooltip">
+						<a data-tooltip="It will be clear form and return to first step after submit form success" class="cf7mls-tooltip">
 								<img src=<?php echo ( '"' . CF7MLS_PLUGIN_URL . 'assets/admin/img/help-circle.svg' . '"' ); ?> alt="help circle">
 						</a>
 					</div>
@@ -83,7 +83,7 @@ function cf7mls_settings_func( $post ) {    ?>
 				<div class="cf7mls-transition-effects-wrap">
 					<h2 class="cf7mls-transition-effects-wrap-title"><?php echo _e( 'Transition Effects (PRO)', 'cf7-multi-step' ); ?></h2>
 					<div class="cf7mls-wrap-switch">
-						<a tooltip="This feature only available in PRO version." class="cf7mls-tooltip">
+						<a data-tooltip="This feature only available in PRO version." class="cf7mls-tooltip">
 							<label class="cf7mls_switch">
 								<input class="cf7mls_toggle_transition_effects" type="checkbox" disabled name="auto-moving-animation" value="on" />
 								<span class="cf7mls_slider cf7mls_round"></span>
@@ -203,7 +203,7 @@ function cf7mls_progress_bar_func( $post ) {
 				<input id="cf7mls-allow-choose-step" type="checkbox" name="cf7mls-allow-choose-step" checked="checked" value="on" disabled />
 				<label for="cf7mls-allow-choose-step" class="cf7mls-allow-choose-step-checkbox" data-checked="on"></label>
 				<span class="cf7mls-allow-choose-step-text"><?php echo esc_html__( 'Allow Choose Step', 'cf7-multi-step' ); ?>
-					<!-- <a tooltip="User can click on each step to see its content before fill" class="cf7mls-tooltip"> -->
+					<!-- <a data-tooltip="User can click on each step to see its content before fill" class="cf7mls-tooltip"> -->
 						<img src=<?php echo ( '"' . CF7MLS_PLUGIN_URL . 'assets/admin/img/help-circle.svg' . '"' ); ?> alt="help circle">
 					<!-- </a> -->
 				</span>

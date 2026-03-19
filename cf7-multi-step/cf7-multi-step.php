@@ -4,7 +4,7 @@
  * Plugin Name: Multi Step for Contact Form 7 (Lite)
  * Plugin URI: https://ninjateam.org/contact-form-7-multi-step/
  * Description: Break your long form into user-friendly steps.
- * Version: 2.7.9
+ * Version: 2.8.0
  * Author: NinjaTeam
  * Author URI: http://ninjateam.org
  * Text Domain: cf7-multi-step
@@ -35,7 +35,7 @@ if ( ! defined( 'CF7MLS_PLUGIN_BASENAME' ) ) {
 	define( 'CF7MLS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 }
 if ( ! defined( 'CF7MLS_NTA_VERSION' ) ) {
-	define( 'CF7MLS_NTA_VERSION', '2.7.9' );
+	define( 'CF7MLS_NTA_VERSION', '2.8.0' );
 }
 
 spl_autoload_register(
@@ -74,6 +74,18 @@ if ( ! function_exists( 'cf7mls_plugin_init' ) ) {
 		require_once plugin_dir_path( __FILE__ ) . 'inc/frontend/validation.php';
 	}
 }
+if( ! function_exists( 'cf7mls_plugin_after_activate' ) ) {
+	function cf7mls_plugin_after_activate() {
+		if ( ! get_option( 'cf7mls_activated_time' ) ) {
+			update_option( 'cf7mls_activated_time', time() );
+		}
+	}
+}
 
 add_action( 'plugins_loaded', 'cf7mls_plugin_init' );
+
+register_activation_hook(
+	__FILE__,
+	'cf7mls_plugin_after_activate'
+);
 

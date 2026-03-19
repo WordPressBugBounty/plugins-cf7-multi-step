@@ -5,15 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_filter(
 	'perfmatters_rest_api_exceptions',
-	function( $exceptions ) {
+	function ( $exceptions ) {
 		$exceptions[] = 'cf7mls';
 		return $exceptions;
 	}
 );
 
 add_action( 'wpcf7_enqueue_scripts', 'cf7mls_frontend_scripts_callback' );
-
-add_action( 'wpcf7_enqueue_styles', 'cf7mls_css_to_wp_head' );
 
 function cf7mls_frontend_scripts_callback() {
 	$cf7d_messages_error = '';
@@ -44,30 +42,6 @@ function cf7mls_frontend_scripts_callback() {
 	);
 }
 
-function cf7mls_css_to_wp_head() {
-	$query = new \WP_Query(
-		array(
-			'post_type'      => 'wpcf7_contact_form',
-			'posts_per_page' => -1,
-			'post_status'    => 'publish',
-		)
-	);
-	$posts = $query->get_posts();
-	if ( count( $posts ) > 0 ) {
-		echo '<style type="text/css">';
-		foreach ( $posts as $key => $post ) {
-			$id              = $post->ID;
-			$next_bg_color   = get_post_meta( $id, '_cf7mls_next_bg_color', true );
-			$next_text_color = get_post_meta( $id, '_cf7mls_next_text_color', true );
-			$back_bg_color   = get_post_meta( $id, '_cf7mls_back_bg_color', true );
-			$back_text_color = get_post_meta( $id, '_cf7mls_back_text_color', true );
-			echo 'div[id^="wpcf7-f' . $id . '"] button.cf7mls_next { ' . ( ( ! empty( $next_bg_color ) ) ? 'background-color: ' . $next_bg_color . ';' : '' ) . ' ' . ( ( ! empty( $next_text_color ) ) ? 'color: ' . $next_text_color : '' ) . ' }';
-			echo 'div[id^="wpcf7-f' . $id . '"] button.cf7mls_back { ' . ( ( ! empty( $back_bg_color ) ) ? 'background-color: ' . $back_bg_color . ';' : '' ) . ' ' . ( ( ! empty( $back_text_color ) ) ? 'color: ' . $back_text_color : '' ) . ' }';
-		}
-		echo '</style>';
-	}
-}
-
 /**
  * Wpcf7 shortcode.
  */
@@ -76,10 +50,20 @@ function cf7mls_add_shortcode_step() {
 }
 add_action( 'wpcf7_init', 'cf7mls_add_shortcode_step' );
 function cf7mls_multistep_shortcode_callback( $tag ) {
-	$tag        = new WPCF7_FormTag( $tag );
-	$name       = $tag->name;
-	$numberStep = (int) explode( '-', $name )[1];
-	$back       = $next = false;
+	$tag          = new WPCF7_FormTag( $tag );
+	$name         = $tag->name;
+	$numberStep   = (int) explode( '-', $name )[1];
+	$back         = $next = false;
+	$contact_form = wpcf7_get_current_contact_form();
+	$cf7_id       = $contact_form->id;
+	if ( empty( $contact_form ) ) {
+		return '';
+	}
+	$next_bg_color   = get_post_meta( $cf7_id, '_cf7mls_next_bg_color', true );
+	$next_text_color = get_post_meta( $cf7_id, '_cf7mls_next_text_color', true );
+
+	$back_bg_color   = get_post_meta( $cf7_id, '_cf7mls_back_bg_color', true );
+	$back_text_color = get_post_meta( $cf7_id, '_cf7mls_back_text_color', true );
 
 	// Check button back last in step.
 	$checkBackLast = false;
@@ -99,11 +83,11 @@ function cf7mls_multistep_shortcode_callback( $tag ) {
 	// TODO add form id to btn to prevent duplicate
 	if ( true === $checkBackLast && $back ) {
 		$html .= apply_filters( 'cf7_step_before_back_btn', '', $name );
-		$html .= '<button type="button" class="cf7mls_back action-button" name="cf7mls_back" id="cf7mls-back-btn-' . $name . '">' . $back . '</button>';
+		$html .= '<button type="button" class="cf7mls_back action-button" name="cf7mls_back" id="cf7mls-back-btn-' . $name . '" style="' . ( ( ! empty( $back_bg_color ) ) ? 'background-color: ' . $back_bg_color . ';' : '' ) . ' ' . ( ( ! empty( $back_text_color ) ) ? 'color: ' . $back_text_color : '' ) . '">' . $back . '</button>';
 		$html .= apply_filters( 'cf7_step_after_back_btn', '', $name );
 	} elseif ( $back ) {
 		$html .= apply_filters( 'cf7_step_before_back_btn', '', $name );
-		$html .= '<button type="button" class="cf7mls_back action-button" name="cf7mls_back" id="cf7mls-back-btn-' . $name . '">' . $back . '</button>';
+		$html .= '<button type="button" class="cf7mls_back action-button" name="cf7mls_back" id="cf7mls-back-btn-' . $name . '" style="' . ( ( ! empty( $back_bg_color ) ) ? 'background-color: ' . $back_bg_color . ';' : '' ) . ' ' . ( ( ! empty( $back_text_color ) ) ? 'color: ' . $back_text_color : '' ) . '">' . $back . '</button>';
 		$html .= apply_filters( 'cf7_step_after_back_btn', '', $name );
 	}
 
@@ -112,22 +96,20 @@ function cf7mls_multistep_shortcode_callback( $tag ) {
 		$loader = apply_filters( 'cf7mls_loader_img', CF7MLS_PLUGIN_URL . 'assets/frontend/img/loader.svg' );
 		$html  .= apply_filters( 'cf7_step_before_next_btn', '', $name );
 
-		$html .= '<button type="button" class="cf7mls_next cf7mls_btn action-button" name="cf7mls_next" id="cf7mls-next-btn-' . $name . '">' . $next . '<img src="' . $loader . '" alt="Step Loading" data-lazy-src="' . $loader . '" style="display: none;" /></button>';
+		$html .= '<button type="button" class="cf7mls_next cf7mls_btn action-button" name="cf7mls_next" id="cf7mls-next-btn-' . $name . '" style="' . ( ( ! empty( $next_bg_color ) ) ? 'background-color: ' . $next_bg_color . ';' : '' ) . ' ' . ( ( ! empty( $next_text_color ) ) ? 'color: ' . $next_text_color : '' ) . '">' . $next . '<img src="' . $loader . '" alt="Step Loading" data-lazy-src="' . $loader . '" style="display: none;" /></button>';
 		$html .= apply_filters( 'cf7_step_after_next_btn', '', $name );
 	} else {
 		$loader = apply_filters( 'cf7mls_loader_img', CF7MLS_PLUGIN_URL . 'assets/frontend/img/loader.svg' );
 		$html  .= apply_filters( 'cf7_step_before_next_btn', '', $name );
 
-		$html .= '<button type="button" style="display: none;" class="cf7mls_next cf7mls_btn action-button" name="cf7mls_next" id="cf7mls-next-btn-' . $name . '">' . $next . '<img src="' . $loader . '" alt="Step Loading" data-lazy-src="' . $loader . '" style="display: none;" /></button>';
+		$html .= '<button type="button" style="display: none;" class="cf7mls_next cf7mls_btn action-button" name="cf7mls_next" id="cf7mls-next-btn-' . $name . '" style="' . ( ( ! empty( $next_bg_color ) ) ? 'background-color: ' . $next_bg_color . ';' : '' ) . ' ' . ( ( ! empty( $next_text_color ) ) ? 'color: ' . $next_text_color : '' ) . '">' . $next . '<img src="' . $loader . '" alt="Step Loading" data-lazy-src="' . $loader . '" style="display: none;" /></button>';
 		$html .= apply_filters( 'cf7_step_after_next_btn', '', $name );
 	}
-	$contact_form = wpcf7_get_current_contact_form();
+
 	if ( $checkBackLast === false ) {
 		$html .= '</div><p></p></fieldset><fieldset class="fieldset-cf7mls">';
-	} else {
-		if ( '' === $back ) {
+	} elseif ( '' === $back ) {
 			$html .= '</div>';
-		}
 	}
 	return $html;
 }

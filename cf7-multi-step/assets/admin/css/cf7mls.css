@@ -501,7 +501,7 @@ a[class^="thickbox"][href$="cf7mls_step"] {
   display: block;
   -webkit-justify-content: center;
   justify-content: center;
-  content: attr(tooltip);
+  content: attr(data-tooltip);
   padding: 12px 10px;
   background-color: #23282d;
   width: 255px;
@@ -533,7 +533,7 @@ a[class^="thickbox"][href$="cf7mls_step"] {
   display: block;
   -webkit-justify-content: center;
   justify-content: center;
-  content: attr(tooltip);
+  content: attr(data-tooltip);
   padding: 12px 10px;
   font-size: 13px;
   font-style: normal;

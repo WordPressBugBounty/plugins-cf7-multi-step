@@ -9,8 +9,17 @@ if ( ! class_exists( 'NjtCF7MLSReview' ) ) {
 		private function doHooks() {
 			add_action( 'wp_ajax_cf7mls_save_review', array( $this, 'cf7mls_save_review' ) );
 
-			$option = get_option( 'cf7mls_review' );
-			if ( time() >= (int) $option && $option !== '0' ) {
+			$option           = get_option( 'cf7mls_review' );
+			$activated_time   = get_option( 'cf7mls_activated_time' );
+
+			if ( ! $activated_time ) {
+				$activated_time = time();
+				update_option( 'cf7mls_activated_time', $activated_time );
+			}
+
+			$has_been_3_days = ( time() - (int) $activated_time ) >= ( 3 * DAY_IN_SECONDS );
+
+			if ( $has_been_3_days && time() >= (int) $option && $option !== '0' ) {
 				add_action( 'admin_notices', array( $this, 'give_review' ) );
 			}
 		}
