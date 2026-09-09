@@ -216,10 +216,11 @@ a[class^="thickbox"][href$="cf7mls_step"] {
 #cf7mls-progress-bar .cf7mls-group-pogress-bar {
   padding-top: 10px;
 }
-#cf7mls-progress-bar .cf7mls-group-pogress-bar,
-#cf7mls-progress-bar .cf7mls_preview
- {
-  opacity: 0.3;
+#cf7mls-progress-bar .cf7mls-group-pogress-bar {
+  opacity: 0.5;
+}
+#cf7mls-progress-bar .cf7mls_preview {
+  opacity: 0.75;
 }
 #cf7mls-progress-bar .cf7mls-group-pogress-bar .cf7mls_bg_color_wrap {
   margin-top: 26px;
@@ -570,6 +571,18 @@ a[class^="thickbox"][href$="cf7mls_step"] {
 
 /* ========= end ========= */
 
+/* The first step renders as "completed": progress_bar.css hides its number and
+   shows .cf7_mls_check instead, but the admin mock has no icon inside it (on the
+   front end JS injects an SVG), which left an empty blue square. Draw the tick. */
+#cf7mls-progress-bar .cf7mls_progress_bar li:first-child .cf7_mls_check i {
+  display: inline-block;
+  width: 5px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 /* ========= start preview ========= */
 #cf7mls-progress-bar .cf7mls_preview {
   float: left;
@@ -580,7 +593,8 @@ a[class^="thickbox"][href$="cf7mls_step"] {
 #cf7mls-progress-bar .cf7mls_browser {
   overflow: hidden;
   border-radius: 7px;
-  box-shadow: 0 1px 0 0 #e3e3e3;
+  border: 1px solid #e8edf1;
+  box-shadow: 0 6px 18px rgba(16, 38, 55, 0.08), 0 1px 3px rgba(16, 38, 55, 0.06);
   background-color: #ffffff;
   margin: 0 auto;
   padding-bottom: 34px;
@@ -589,7 +603,8 @@ a[class^="thickbox"][href$="cf7mls_step"] {
 }
 #cf7mls-progress-bar .cf7mls_circle_wrap {
   height: 50px;
-  background-color: #e5f1f6;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e8edf1;
   line-height: 57px;
   padding-left: 22px;
   border-radius: 7px 7px 0px 0px;
@@ -603,13 +618,13 @@ a[class^="thickbox"][href$="cf7mls_step"] {
   background-color: rgba(0, 115, 170, 0.2);
 }
 #cf7mls-progress-bar .cf7mls_red_circle {
-  border-color: #E44054;
+  background-color: #ff5f57;
 }
 #cf7mls-progress-bar .cf7mls_yellow_circle {
-  border-color: #FFE372
+  background-color: #febc2e;
 }
 #cf7mls-progress-bar .cf7mls_green_circle {
-  border-color: #7ED321
+  background-color: #28c840;
 }
 #cf7mls-progress-bar .cf7mls_block {
   margin: 0 auto;
@@ -797,14 +812,51 @@ a[class^="thickbox"][href$="cf7mls_step"] {
 #cf7mls-progress-bar .config-error {
   display: none;
 }
-#cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-title {
-  font-weight: 700;
-  text-decoration: underline;
-}
 #cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-wrap {
-  height: 43px;
-  margin-top: 16px;
-  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 26px;
+  padding: 13px 16px;
+  border: 1px solid #cfe3ef;
+  border-left: 4px solid #0073aa;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f3fafd 0%, #ffffff 65%);
+  box-shadow: 0 1px 2px rgba(16, 38, 55, 0.06);
+}
+/* Beats the generic "#cf7mls-progress-bar span" colour rule without !important. */
+#cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-wrap .cf7mls-pro-badge {
+  flex: none;
+  padding: 3px 9px;
+  border-radius: 3px;
+  background-color: #0073aa;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-wrap .cf7mls-pro-message {
+  flex: 1 1 auto;
+  font-size: 13px;
+}
+#cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-title {
+  flex: none;
+  padding: 7px 16px;
+  border-radius: 4px;
+  background-color: #0073aa;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+#cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-title:hover,
+#cf7mls-progress-bar .cf7mls-progress-bar-upgrade-pro-title:focus {
+  background-color: #005d8a;
+  color: #ffffff;
 }
 #cf7mls-progress-bar span {
   color: #262626;

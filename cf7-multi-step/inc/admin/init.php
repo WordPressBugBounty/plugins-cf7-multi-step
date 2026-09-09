@@ -11,7 +11,7 @@ if ( ! function_exists( 'cf7cmlsIsMoanaActivated' ) ) {
 // Add Go Pro Action Link
 add_filter( 'plugin_action_links_' . CF7MLS_PLUGIN_BASENAME, 'cf7mls_plugin_action_links' );
 function cf7mls_plugin_action_links( $links ) {
-	$links[] = '<a target="_blank" href="https://1.envato.market/CF7-Multi-Step-Go-Pro" style="color: #43B854; font-weight: bold">' . __( 'Go Pro', 'cf7-multi-step' ) . '</a>';
+	$links[] = '<a target="_blank" href="https://ninjateam.org/contact-form-7-multi-step/" style="color: #43B854; font-weight: bold">' . __( 'Go Pro', 'cf7-multi-step' ) . '</a>';
 	return $links;
 }
 // Add Document link
@@ -81,7 +81,7 @@ function cf7mls_admin_scripts_callback( $hook_suffix ) {
 				'textInputStep'           => __( 'Step Name', 'cf7-multi-step' ),
 				'textInputBack'           => __( 'Back Button', 'cf7-multi-step' ),
 				'textInputNext'           => __( 'Next Button', 'cf7-multi-step' ),
-				'textEditMoana'           => __( 'Edit With Moana', 'cf7-multi-step' ),
+				'textEditMoana'           => __( 'Edit with Moana', 'cf7-multi-step' ),
 				'cf7cmlsIsMoanaActivated' => cf7cmlsIsMoanaActivated(),
 				'pluginUrl'               => CF7MLS_PLUGIN_URL,
 				'isCF7Version6'           => version_compare( WPCF7_VERSION, '6.0', '>=' ),

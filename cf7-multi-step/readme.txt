@@ -3,8 +3,8 @@ Contributors: ninjateam
 Donate link: https://codecanyon.net/item/contact-form-7-multistep/15232990
 Tags: cf7, multi-step, forms, multi-step form, multistep, contact form 7, form, form builder, 
 Requires at least: 3.0
-Tested up to: 6.9
-Stable tag: 2.8.0
+Tested up to: 7.1
+Stable tag: 2.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,12 @@ Considering upgrading your contact form to Pro? Check it out: [Contact Form 7 Mu
 5. Progress Bar Options (PRO)
 
 == Changelog ==
+
+= Sep 9, 2026 - Version 2.9.0 =
+- Updated: Compatible with WordPress 7.1
+- Improved: Recall field (PRO)
+- Fixed: CSS issues
+- Fixed: Issue when insert new fields
 
 = Mar 19, 2026 - Version 2.8.0 =
 - Updated: Compatible with WordPress 6.9

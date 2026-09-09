@@ -49,7 +49,7 @@ if ( ! class_exists( 'NjtCF7MLSReview' ) ) {
 				}
 				wp_send_json_success();
 			}
-			wp_send_json_error( array( 'message' => 'Update fail!' ) );
+			wp_send_json_error( array( 'message' => 'Update failed.' ) );
 		}
 
 		public function give_review() {
@@ -59,15 +59,15 @@ if ( ! class_exists( 'NjtCF7MLSReview' ) ) {
 				<div class="notice notice-success is-dismissible" id="njt-cf7mls-review">
 					<h3 style="margin: 1em 0;"><?php _e( 'Give Multi Step for Contact Form 7 a review', 'cf7-multi-step' ); ?></h3>
 					<p>
-						<?php _e( 'Thank you for choosing Multi Step for Contact Form 7. We hope you love it. Could you take a couple of seconds posting a nice review to share your happy experience?', 'cf7-multi-step' ); ?>
+						<?php _e( 'Thank you for choosing Multi Step for Contact Form 7. We hope you are enjoying it. Could you spare a few seconds to post a review and share your experience?', 'cf7-multi-step' ); ?>
 					</p>
 					<p>
-						<?php _e( 'We will be forever grateful. Thank you in advance ;)', 'cf7-multi-step' ); ?>
+						<?php _e( 'We would be very grateful. Thank you!', 'cf7-multi-step' ); ?>
 					</p>
 					<p>
 						<a href="javascript:;" data="rateNow" class="button button-primary" style="margin-right: 5px"><?php _e( 'Rate now', 'cf7-multi-step' ); ?></a>
 						<a href="javascript:;" data="later" class="button" style="margin-right: 5px"><?php _e( 'Later', 'cf7-multi-step' ); ?></a>
-						<a href="javascript:;" data="alreadyDid" class="button"><?php _e( 'Already did', 'cf7-multi-step' ); ?></a>
+						<a href="javascript:;" data="alreadyDid" class="button"><?php _e( 'Already done', 'cf7-multi-step' ); ?></a>
 					</p>
 				</div>
 				<script>

@@ -26,9 +26,16 @@ if ( ! class_exists( 'NjtCF7MLSDashBoardWidget' ) ) {
 				</div>
 				<div class="cf7mls-postbox-list-wrap">
 					<ul class="cf7mls-list-checked">
-						<li><?php echo esc_html__( 'Bring your form to life with progress bar and better design', 'cf7-multi-step' ); ?></li>
-						<li><?php echo esc_html__( 'Spice up steps with animation effects, and more', 'cf7-multi-step' ); ?></li>
-						<li><?php echo esc_html__( 'Let audience know what to expect and <strong>collect more leads!', 'cf7-multi-step' ); ?></strong></li>
+						<li><?php echo esc_html__( 'Bring your form to life with a progress bar and better design', 'cf7-multi-step' ); ?></li>
+						<li><?php echo esc_html__( 'Spice up your steps with animation effects and more', 'cf7-multi-step' ); ?></li>
+						<li>
+						<?php
+						echo wp_kses(
+							__( 'Let your audience know what to expect and <strong>collect more leads!</strong>', 'cf7-multi-step' ),
+							array( 'strong' => array() )
+						);
+						?>
+						</li>
 					</ul>
 				</div>
 				<div class="cf7mls-postbox-img-wrap">
@@ -37,7 +44,7 @@ if ( ! class_exists( 'NjtCF7MLSDashBoardWidget' ) ) {
 					</svg>
 				</div>
 				<div class="cf7mls-postbox-btn-wrap">
-					<a class="button button-primary" href="https://1.envato.market/CF7-Multi-Step-Go-Pro" target="_blank"><?php echo esc_html__( 'Upgrade to Pro', 'cf7-multi-step' ); ?></a>
+					<a class="button button-primary" href="https://ninjateam.org/contact-form-7-multi-step/" target="_blank"><?php echo esc_html__( 'Upgrade to Pro', 'cf7-multi-step' ); ?></a>
 				</div>
 			</div>
 			<?php

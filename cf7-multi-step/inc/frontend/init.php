@@ -55,10 +55,10 @@ function cf7mls_multistep_shortcode_callback( $tag ) {
 	$numberStep   = (int) explode( '-', $name )[1];
 	$back         = $next = false;
 	$contact_form = wpcf7_get_current_contact_form();
-	$cf7_id       = $contact_form->id;
 	if ( empty( $contact_form ) ) {
 		return '';
 	}
+	$cf7_id          = $contact_form->id();
 	$next_bg_color   = get_post_meta( $cf7_id, '_cf7mls_next_bg_color', true );
 	$next_text_color = get_post_meta( $cf7_id, '_cf7mls_next_text_color', true );
 

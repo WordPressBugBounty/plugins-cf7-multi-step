@@ -19,18 +19,18 @@ function cf7mls_settings_func( $post ) {    ?>
 		<h2 class="cf7mls-title cf7mls-title-color"><?php echo esc_html( __( 'Color', 'cf7-multi-step' ) ); ?></h2>
 				
 		<fieldset class="cf7mls-group-color">
-					<legend class="cf7mls-color-caption"><?php _e( 'You can change the background-color or text-color of Back, Next buttons here.', 'cf7-multi-step' ); ?></legend>
+					<legend class="cf7mls-color-caption"><?php _e( 'Change the background and text colors of the Back and Next buttons.', 'cf7-multi-step' ); ?></legend>
 					
 					<div class="cf7mls-group-color-bt-back">
 						<p class="cf7mls-title"><?php _e( 'Back Button', 'cf7-multi-step' ); ?></p>
 
 						<div class="cf7mls-wrap-bg-color">
-							<p class="cf7mls-label"><?php _e( 'BG color', 'cf7-multi-step' ); ?></p>
+							<p class="cf7mls-label"><?php _e( 'Background Color', 'cf7-multi-step' ); ?></p>
 							<input type="text" class="cf7mls-color-field" name="back-btn-bg-color" value="<?php echo $post->prop( 'cf7mls_back_bg_color' ); ?>" />
 						</div>
 
 						<div class="cf7mls-wrap-text-color">
-							<p class="cf7mls-label"><?php _e( 'Text color', 'cf7-multi-step' ); ?></p>
+							<p class="cf7mls-label"><?php _e( 'Text Color', 'cf7-multi-step' ); ?></p>
 							<input type="text" class="cf7mls-color-field" name="back-btn-text-color" value="<?php echo $post->prop( 'cf7mls_back_text_color' ); ?>" />
 						</div>
 					</div>
@@ -39,12 +39,12 @@ function cf7mls_settings_func( $post ) {    ?>
 						<p class="cf7mls-title"><?php _e( 'Next Button', 'cf7-multi-step' ); ?></p>
 						
 						<div class="cf7mls-wrap-bg-color">
-							<p class="cf7mls-label"><?php _e( 'BG color', 'cf7-multi-step' ); ?></p>
+							<p class="cf7mls-label"><?php _e( 'Background Color', 'cf7-multi-step' ); ?></p>
 							<input type="text" class="cf7mls-color-field" name="next-btn-bg-color" value="<?php echo $post->prop( 'cf7mls_next_bg_color' ); ?>" />
 						</div>
 
 						<div class="cf7mls-wrap-text-color">
-							<p class="cf7mls-label"><?php _e( 'Text color', 'cf7-multi-step' ); ?></p>
+							<p class="cf7mls-label"><?php _e( 'Text Color', 'cf7-multi-step' ); ?></p>
 							<input type="text" class="cf7mls-color-field" name="next-btn-text-color" value="<?php echo $post->prop( 'cf7mls_next_text_color' ); ?>" />
 						</div>
 					</div>
@@ -53,7 +53,7 @@ function cf7mls_settings_func( $post ) {    ?>
 				<div class="cf7mls-auto-scroll-wrap">
 					<div class="cf7mls-auto-scroll-title-wrap">
 						<h2 class="cf7mls-auto-scroll-title"><?php echo esc_html( __( 'Auto Scroll to Top', 'cf7-multi-step' ) ); ?></h2>
-						<a data-tooltip="It will be scrolled to the top of the form after each step." class="cf7mls-tooltip">
+						<a data-tooltip="Scrolls to the top of the form after each step." class="cf7mls-tooltip">
 								<img src=<?php echo ( '"' . CF7MLS_PLUGIN_URL . 'assets/admin/img/help-circle.svg' . '"' ); ?> alt="help circle">
 						</a>
 					</div>
@@ -67,8 +67,8 @@ function cf7mls_settings_func( $post ) {    ?>
 
 				<div class="cf7mls-auto-scroll-wrap">
 					<div class="cf7mls-auto-scroll-title-wrap">
-						<h2 class="cf7mls-auto-scroll-title"><?php echo esc_html( __( 'Return First Step After Submit', 'cf7-multi-step' ) ); ?></h2>
-						<a data-tooltip="It will be clear form and return to first step after submit form success" class="cf7mls-tooltip">
+						<h2 class="cf7mls-auto-scroll-title"><?php echo esc_html( __( 'Return to First Step After Submit', 'cf7-multi-step' ) ); ?></h2>
+						<a data-tooltip="Clears the form and returns to the first step after a successful submission." class="cf7mls-tooltip">
 								<img src=<?php echo ( '"' . CF7MLS_PLUGIN_URL . 'assets/admin/img/help-circle.svg' . '"' ); ?> alt="help circle">
 						</a>
 					</div>
@@ -83,7 +83,7 @@ function cf7mls_settings_func( $post ) {    ?>
 				<div class="cf7mls-transition-effects-wrap">
 					<h2 class="cf7mls-transition-effects-wrap-title"><?php echo _e( 'Transition Effects (PRO)', 'cf7-multi-step' ); ?></h2>
 					<div class="cf7mls-wrap-switch">
-						<a data-tooltip="This feature only available in PRO version." class="cf7mls-tooltip">
+						<a data-tooltip="This feature is only available in the PRO version." class="cf7mls-tooltip">
 							<label class="cf7mls_switch">
 								<input class="cf7mls_toggle_transition_effects" type="checkbox" disabled name="auto-moving-animation" value="on" />
 								<span class="cf7mls_slider cf7mls_round"></span>
@@ -113,11 +113,11 @@ function cf7mls_settings_func( $post ) {    ?>
 	<?php
 	if ( cf7mls_is_active_cf7db() ) {
 		?>
-		<h2><?php echo esc_html( __( 'Save to database', 'cf7-multi-step' ) ); ?></h2>
+		<h2><?php echo esc_html( __( 'Save to Database', 'cf7-multi-step' ) ); ?></h2>
 		<fieldset>
 			<p class="description">
 				<label for="cf7mls_db_save_every_step">
-					<?php _e( 'Save form\'s every step?', 'cf7-multi-step' ); ?>
+					<?php _e( 'Save every step, not just the final submission?', 'cf7-multi-step' ); ?>
 					<br />
 					<input type="checkbox" name="cf7mls_db_save_every_step" value="yes" id="cf7mls_db_save_every_step" <?php echo checked( $post->prop( 'cf7mls_db_save_every_step' ), 'yes' ); ?> />
 				</label>
@@ -130,8 +130,9 @@ function cf7mls_progress_bar_func( $post ) {
 
 	?>
 	<div class="cf7mls-progress-bar-upgrade-pro-wrap">
-		<span><?php echo esc_html__( 'This features only available in PRO version', 'cf7-multi-step' ); ?> - </span>
-		<a target="_blank" href="https://1.envato.market/CF7-Multi-Step-Go-Pro" class="cf7mls-progress-bar-upgrade-pro-title"><?php echo esc_html__( 'Upgrade Now', 'cf7-multi-step' ); ?></a>
+		<span class="cf7mls-pro-badge">PRO</span>
+		<span class="cf7mls-pro-message"><?php echo esc_html__( 'This feature is only available in the PRO version', 'cf7-multi-step' ); ?></span>
+		<a target="_blank" href="https://ninjateam.org/contact-form-7-multi-step/" class="cf7mls-progress-bar-upgrade-pro-title"><?php echo esc_html__( 'Upgrade Now', 'cf7-multi-step' ); ?></a>
 	</div>
 	<div class="cf7mls_pogress_bar_wrap">
 		<div class="cf7mls-group-pogress-bar"> 
@@ -160,7 +161,7 @@ function cf7mls_progress_bar_func( $post ) {
 				<h2><?php echo esc_html__( 'Border Style', 'cf7-multi-step' ); ?></h2>
 
 				<select name="cf7mls_progress_bar_icon_style" id="cf7mls_progress_bar_icon_style" disabled>
-					<option value="squaren" selected="selected"><?php echo esc_html__( 'Squaren', 'cf7-multi-step' ); ?></option>
+					<option value="squaren" selected="selected"><?php echo esc_html__( 'Square', 'cf7-multi-step' ); ?></option>
 					<option value="round"><?php echo esc_html__( 'Round', 'cf7-multi-step' ); ?></option>
 				</select>
 
@@ -172,21 +173,21 @@ function cf7mls_progress_bar_func( $post ) {
 					<input value="vertical" name="cf7mls-style-text" type="text" class="cf7mls-style-text hidden" />
 
 					<div data-style-text="horizontal" class="cf7mls-style-text-wrap">
-						<p class="cf7mls-style-text"><?php echo esc_html__( 'Horizontal text', 'cf7-multi-step' ); ?></p>
+						<p class="cf7mls-style-text"><?php echo esc_html__( 'Horizontal Text', 'cf7-multi-step' ); ?></p>
 					</div>
 
 					<div data-style-text="vertical" class="cf7mls-style-text-wrap active">
-						<p class="cf7mls-style-text"><?php echo esc_html__( 'Vertical text', 'cf7-multi-step' ); ?></p>
+						<p class="cf7mls-style-text"><?php echo esc_html__( 'Vertical Text', 'cf7-multi-step' ); ?></p>
 					</div>
 
 					<div data-style-text="no" class="cf7mls-style-text-wrap">
-						<p class="cf7mls-style-text"><?php echo esc_html__( 'No text', 'cf7-multi-step' ); ?></p>
+						<p class="cf7mls-style-text"><?php echo esc_html__( 'No Text', 'cf7-multi-step' ); ?></p>
 					</div>
 				</div>
 			</div>
 
 			<div class="cf7mls-pogress-bar-percent">
-				<h2 class="cf7mls-title-pogress-bar-percent"><?php echo esc_html__( 'Progress Bar Percent', 'cf7-multi-step' ); ?></h2>
+				<h2 class="cf7mls-title-pogress-bar-percent"><?php echo esc_html__( 'Show Percentage', 'cf7-multi-step' ); ?></h2>
 				<div class="cf7mls-wrap-switch">
 					<label class="cf7mls_switch cf7mls_progress_bars_witch">
 						<input class="cf7mls_enable_progress_bar_percent" disabled type="checkbox" id="cf7_mls_enable_progress_bar_percent" name="cf7_mls_enable_progress_bar_percent" checked="checked" value="1" />
@@ -202,10 +203,8 @@ function cf7mls_progress_bar_func( $post ) {
 			<div class="cf7mls-allow-choose-step-wrap">
 				<input id="cf7mls-allow-choose-step" type="checkbox" name="cf7mls-allow-choose-step" checked="checked" value="on" disabled />
 				<label for="cf7mls-allow-choose-step" class="cf7mls-allow-choose-step-checkbox" data-checked="on"></label>
-				<span class="cf7mls-allow-choose-step-text"><?php echo esc_html__( 'Allow Choose Step', 'cf7-multi-step' ); ?>
-					<!-- <a data-tooltip="User can click on each step to see its content before fill" class="cf7mls-tooltip"> -->
+				<span class="cf7mls-allow-choose-step-text"><?php echo esc_html__( 'Allow Step Navigation', 'cf7-multi-step' ); ?>
 						<img src=<?php echo ( '"' . CF7MLS_PLUGIN_URL . 'assets/admin/img/help-circle.svg' . '"' ); ?> alt="help circle">
-					<!-- </a> -->
 				</span>
 			</div>
 
@@ -276,7 +275,7 @@ function cf7mls_progress_bar_func( $post ) {
 
 					</ul>
 
-					<!-- Show in ipad, mobie phone -->
+					<?php // Shown on tablet and phone. ?>
 					<?php
 					if ( count( $cf7mls_steps ) > 1 ) {
 						?>
@@ -305,7 +304,7 @@ function cf7mls_progress_bar_func( $post ) {
 						<div class="cf7mls_next_demo"><?php echo esc_html__( 'Next', 'cf7-multi-step' ); ?></div>
 					</div>
 				</div>
-				<!-- Progress Bar percent on ipad, mobie, computer-->
+				<?php // Progress bar percentage on tablet, phone and desktop. ?>
 				<div class="cf7mls_progress_bar_per_mobie_wrap">
 					<div class="cf7mls_progress_percent">
 						<div class="cf7mls_progress_bar_percent">
@@ -318,7 +317,7 @@ function cf7mls_progress_bar_func( $post ) {
 				</div>
 			</div>
 		</div>
-		<p class="cf7mls_note"><?php echo esc_html__( 'Preview only shows 3 steps.', 'cf7-multi-step' ); ?></p>
+		<p class="cf7mls_note"><?php echo esc_html__( 'This preview shows the first 3 steps only.', 'cf7-multi-step' ); ?></p>
 	</div>
 	<?php
 }
@@ -370,7 +369,8 @@ function cf7mls_form_properties( $properties ) {
 			if ( is_array( $forms ) ) {
 				foreach ( $forms as $key => $form ) {
 					if ( strstr( $form, 'cf7mls_step' ) ) {
-						$forms[ $key ] = $forms[ $key ] . ' "' . $cf7mls_step_name[ $n ] . '"';
+						$step_name     = isset( $cf7mls_step_name[ $n ] ) ? $cf7mls_step_name[ $n ] : '';
+						$forms[ $key ] = $forms[ $key ] . ' "' . $step_name . '"';
 						$n++;
 					}
 
@@ -382,7 +382,8 @@ function cf7mls_form_properties( $properties ) {
 						$stepLast      = '';
 						$stepLast     .= '[cf7mls_step cf7mls_step-' . $key;
 						$stepLast     .= ' "' . $properties['cf7mls_back_button_title'] . '"';
-						$stepLast     .= ' "' . $cf7mls_step_name[ $n ] . '"]';
+						$last_step_name = isset( $cf7mls_step_name[ $n ] ) ? $cf7mls_step_name[ $n ] : '';
+						$stepLast     .= ' "' . $last_step_name . '"]';
 						$forms[ $key ] = $stepLast . $forms[ $key ];
 					}
 				}
