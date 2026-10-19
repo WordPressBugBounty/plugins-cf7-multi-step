@@ -64,7 +64,12 @@ function cf7mls_wpcf7_editor_panel_form( $post ) {
 add_action( 'admin_enqueue_scripts', 'cf7mls_admin_scripts_callback' );
 function cf7mls_admin_scripts_callback( $hook_suffix ) {
 	$load_js_css = false;
-	if ( ( substr( $hook_suffix, -15 ) == '_page_wpcf7-new' ) || ( $hook_suffix == 'toplevel_page_wpcf7' ) ) {
+	$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+	if (
+		( substr( $hook_suffix, -15 ) == '_page_wpcf7-new' ) ||
+		( $hook_suffix == 'toplevel_page_wpcf7' ) ||
+		( false !== strpos( $hook_suffix, 'wpcf7' ) && in_array( $page, array( 'wpcf7', 'wpcf7-new' ), true ) )
+	) {
 		$load_js_css = true;
 	}
 	if ( true === $load_js_css ) {

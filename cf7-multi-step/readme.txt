@@ -1,10 +1,11 @@
 === Multi Step for Contact Form 7 ===
 Contributors: ninjateam
-Donate link: https://codecanyon.net/item/contact-form-7-multistep/15232990
-Tags: cf7, multi-step, forms, multi-step form, multistep, contact form 7, form, form builder, 
+Donate link: https://ninjateam.org/contact-form-7-multi-step/
+Tags: cf7, multi-step, forms, contact form 7, form builder
 Requires at least: 3.0
+Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +21,7 @@ Imagine that your form has 20+ fields and appears to be a lengthy list... Don't 
 
 The shorter, the better.
 
-[LIVE DEMO](https://demo.ninjateam.org/contact-form-7-multi-step/) | [GO PRO](https://1.envato.market/Contact-Form-7-Multi-Step) 🚀
+[LIVE DEMO](https://demo.ninjateam.org/contact-form-7-multi-step/) | [GO PRO](https://ninjateam.org/contact-form-7-multi-step/) 🚀
 
 [youtube https://www.youtube.com/watch?v=kMrQUDXcJs8]
 
@@ -89,11 +90,11 @@ Feel free to [create a topic](https://wordpress.org/support/plugin/cf7-multi-ste
 Your contact form will come back to its previous state with all fields and tags displaying on a single page. 
 
 = What are the differences between the Multi-Step Lite & Pro version? =
-[Multi-Step Pro](https://1.envato.market/Contact-Form-7-Multi-Step) comes with advanced features including progress bar, percentage, custom button, transition effects, preview option, user-selected steps, and so on.
+[Multi-Step Pro](https://ninjateam.org/contact-form-7-multi-step/) comes with advanced features including progress bar, percentage, custom button, transition effects, preview option, user-selected steps, and so on.
 
 = Is that a one-time payment for Contact Form 7 Multi Step Pro?
 Yes, you pay once to get lifetime updates. 
-Considering upgrading your contact form to Pro? Check it out: [Contact Form 7 Multi Step Pro](https://1.envato.market/Contact-Form-7-Multi-Step).
+Considering upgrading your contact form to Pro? Check it out: [Contact Form 7 Multi Step Pro](https://ninjateam.org/contact-form-7-multi-step/).
 
 == Screenshots ==
 1. Multi-Step Form in frontend with Progress Bar (PRO)
@@ -103,6 +104,9 @@ Considering upgrading your contact form to Pro? Check it out: [Contact Form 7 Mu
 5. Progress Bar Options (PRO)
 
 == Changelog ==
+
+= Oct 19, 2026 - Version 2.9.1 =
+- Improved: Compatible with Contact Form 7 v6.2
 
 = Sep 9, 2026 - Version 2.9.0 =
 - Updated: Compatible with WordPress 7.1
@@ -203,7 +207,7 @@ Considering upgrading your contact form to Pro? Check it out: [Contact Form 7 Mu
 
 = 2.5 - BIG UPDATE =
 - Fixed: Error with WordPress 5.5
-- Fixed: Compatibility with [Moana - Contact Form 7 Builder](https://1.envato.market/Form-Plugins)
+- Fixed: Compatibility with Moana - Contact Form 7 Builder
 - Added: New layout
 - Added: Styles for progress bar (Pro)
 - Added: Color for progress bar (Pro)
